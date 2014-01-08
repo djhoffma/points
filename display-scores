@@ -1,0 +1,10 @@
+#!/bin/bash
+source /admin/consult/bin/points/global-paths.sh
+if [ ! -e $SCORE_FILE ]; then
+  echo "score file does not exist, run setup-system and try again"
+  exit 1
+fi
+for member in $(cat $MEMBERS_LIST); do
+  mscore=$($GET_SCORE_SCRIPT $member)
+  echo "$member:$mscore"
+done

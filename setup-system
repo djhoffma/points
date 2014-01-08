@@ -1,0 +1,53 @@
+#!/bin/bash
+source /admin/consult/bin/points/global-paths.sh
+if [ -e "$SCORE_FILE" ]; then
+  echo "$SCORE_FILE exists, would you really like to reset the system? (y/N)"
+  read choice
+  if [ "$choice" == "y" ]; then
+    echo "resetting system"
+    rm -f $SCORE_FILE
+  else
+    echo "could not override existing score, exitting"
+    exit 1
+  fi
+fi
+if [ "$#" -eq "1" ]; then
+  HEAD_GROUP=$1
+else
+  echo "enter group to be used for administration"
+  read HEAD_GROUP
+fi
+echo "changing group of files"
+for file in $FILES_LIST; do
+  if [ -e $file ]; then
+    chgrp $HEAD_GROUP $file
+  fi
+done
+if [ ! -e "$MEMBERS_LIST" ]; then
+  echo "members list does not exist, generating"
+  $GENERATE_MEMBERS_SCRIPT
+else
+  echo "members list exists, would you like to regenerate? (Y/n)"
+  read choice
+  if [ "$choice" != "n" ]; then
+    echo "re-generating members list"
+    rm -f $MEMBERS_LIST
+    $GENERATE_MEMBERS_SCRIPT
+  fi
+fi
+echo "generating intial scores"
+echo "start-date:$(date)" >> $SCORE_FILE
+echo "head-group:$HEAD_GROUP" >> $SCORE_FILE
+for name in $(cat $MEMBERS_LIST); do
+  if groups $name | grep -q "$HEAD_GROUP"; then
+    echo "$name:$ADMIN_BASE_SCORE" >> $SCORE_FILE
+  else
+    echo "$name:$BASE_SCORE" >> $SCORE_FILE
+  fi
+done
+for file in $FILES_LIST; do
+  if [ -e $file ]; then
+    chgrp $HEAD_GROUP $file
+  fi
+done
+

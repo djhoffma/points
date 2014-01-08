@@ -1,0 +1,9 @@
+#!/bin/bash
+source /admin/consult/bin/points/global-paths.sh
+if [ "$#" != "1" ]; then
+  echo "usage: get-points USERNAME"
+  exit 1
+fi
+username=$1
+userscore=$(grep $username $SCORE_FILE | awk -F ":" '{s+=$2} END {print s}')
+echo $userscore
