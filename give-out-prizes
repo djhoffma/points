@@ -1,0 +1,15 @@
+#!/bin/bash
+source /admin/consult/bin/points/global-paths.sh
+if [ "$#" != "1" ]; then
+  echo "usage: give-out-prizes NUMBER"
+  exit 1
+fi
+NUM_PRIZES="$1"
+if echo -n "$NUM_PRIZES" | grep -v -q "^[1-9][0-9]*$"; then
+  echo "number of prizes must be a positive integer"
+  exit 1
+fi
+$DISPLAY_SCORES_SCRIPT > $ROOT_PATH/prizes/scores
+JAVA_LOC=/pro/java/linux/jdk1.7_x64/bin
+$JAVA_LOC/javac $ROOT_PATH/prizes/PrizeGenerator.java
+$JAVA_LOC/java -cp $ROOT_PATH prizes.PrizeGenerator $ROOT_PATH/prizes/scores $NUM_PRIZES
