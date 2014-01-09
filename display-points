@@ -1,0 +1,21 @@
+#!/bin/bash
+source /admin/consult/bin/points/global-paths.sh
+if [ "$#" -ge "1" ]; then
+  SCORE_FILE="$1"
+  shift 1
+fi
+if [ ! -e $SCORE_FILE ]; then
+  echo "score file does not exist, run setup-system and try again"
+  exit 1
+fi
+if [ "$1" == "--display-all" ]; then
+  ALL="true"
+fi
+HEAD_GROUP=$(grep "head-group" $SCORE_FILE | awk -F ":" '{print $2}')
+HEAD_GROUP_MEMBERS=$(members $HEAD_GROUP)
+for member in $(cat $MEMBERS_LIST); do
+  if echo "$HEAD_GROUP_MEMBERS" | grep -v -q $member || [ "$ALL" == "true" ]; then
+    mscore=$($GET_SCORE_SCRIPT $member)
+    echo "$member:$mscore"
+  fi
+done
