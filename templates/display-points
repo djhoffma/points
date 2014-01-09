@@ -13,9 +13,11 @@ if [ "$1" == "--display-all" ]; then
 fi
 HEAD_GROUP=$(grep "head-group" $SCORE_FILE | awk -F ":" '{print $2}')
 HEAD_GROUP_MEMBERS=$(members $HEAD_GROUP)
+RES=""
 for member in $(cat $MEMBERS_LIST); do
   if echo "$HEAD_GROUP_MEMBERS" | grep -v -q $member || [ "$ALL" == "true" ]; then
     mscore=$($GET_SCORE_SCRIPT $member)
-    echo "$member:$mscore"
+    RES+="$member:$mscore\n"
   fi
 done
+echo -e "$RES" |  sort -r -n -k 2 -t ":" | head -n -1
