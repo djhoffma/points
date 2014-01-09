@@ -7,7 +7,7 @@ fi
 GIVER=$(whoami)
 TARGET="$1"
 if [ -z "$(grep $GIVER $MEMBERS_LIST)" ]; then
-  echo "you are not a member of the points system, please notify the administrators"
+  echo "you are not a member of the points system; please notify the administrators"
   exit 1
 fi
 if [ -z "$(grep $TARGET $MEMBERS_LIST)" ]; then
@@ -18,7 +18,7 @@ if [ "$#" == "2" ]; then
   if echo -n "$2" | grep -q "^[1-9][0-9]*$"; then
     POINTS="$2"
   else
-    echo "invalid points specified, must be positive integer"
+    echo "invalid points specified; must be positive integer"
     exit 1
   fi
 else
