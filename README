@@ -13,8 +13,11 @@ bash shell
 awk, grep, and a few other common bash utilities
 
 How to setup:
-First, make sure that you put a command into the file "generate-members" that, when run, gives a list
-of linux usernames that will be a part of your system. This list includes administrators.
+Clone this repository into the directory where you want to set up your system.
+
+Make sure that you put a command into the file "template/generate-members" that, when run, gives a list
+of linux usernames that will be a part of your system. This list includes administrators. You can use the variable %ROOT%
+to represent the root of the directory where you cloned these files. An example is included in the download.
 
 Second, make sure all of your administrators are in a single linux user group, such as h-consult. This can also be a single username, because every linux user also gets a group where they are the only member.
 
@@ -35,3 +38,9 @@ you want to make the scores file writable by all people in the system.
 display-points
 give-points USERNAME [NUMBER]
 note: give-points defaults to 1 point if no number is specified.
+
+Giving out prizes:
+give-out-prizes NUMBER
+will give out NUMBER amount of prizes to the members system (not including admins) with a weighted probability based on the number of points earned.
+the prizes are numbered, and it assumes the users have an external system for numbering their own prizes and can actually give said prizes without assistance
+from the computer.
