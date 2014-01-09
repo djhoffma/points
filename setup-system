@@ -52,4 +52,4 @@ for file in $FILES_LIST; do
 done
 chmod 664 $SCORE_FILE
 chmod 664 $MEMBERS_LIST
-
+chmod g+s $GIVE_PTS_SCRIPT
