@@ -1,5 +1,5 @@
 CURR_PATH := $(shell pwd | sed 's/\//\\\//g')
-SCRIPTS := display-points generate-members get-member-score give-out-prizes give-points.sh setup-system global-paths.sh
+SCRIPTS := display-points generate-members get-member-score give-out-prizes give-points.sh setup-system global-paths.sh give-points-outer.c
 TEMPLATE_FILES := $(addprefix templates/,$(SCRIPTS))
 EXECUTABLE_FILES := give-points
 setup: setup-templates $(TEMPLATE_FILES)

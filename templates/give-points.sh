@@ -4,7 +4,7 @@ if [ "$#" == "0" -o "$#" -gt "2" ]; then
   echo "usage: give-points USERNAME [NUM_POINTS]"
   exit 1
 fi
-GIVER=$(whoami)
+GIVER=$USER
 TARGET="$1"
 if [ -z "$(grep $GIVER $MEMBERS_LIST)" ]; then
   echo "you are not a member of the points system; please notify the administrators"
