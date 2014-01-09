@@ -1,0 +1,6 @@
+#!/bin/bash
+CURR_PATH=$(pwd | sed 's/\//\\\//g')
+for file in $(ls templates); do
+  sed "s/\%ROOT\%/$CURR_PATH/g" templates/$file > $file
+  chmod 774 $file
+done

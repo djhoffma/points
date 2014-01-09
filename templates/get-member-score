@@ -1,5 +1,5 @@
 #!/bin/bash
-source /admin/consult/bin/points/global-paths.sh
+source %ROOT%/global-paths.sh
 if [ "$#" != "1" ]; then
   echo "usage: get-points USERNAME"
   exit 1

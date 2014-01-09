@@ -1,5 +1,5 @@
 #!/bin/bash
-source /admin/consult/bin/points/global-paths.sh
+source %ROOT%/global-paths.sh
 if [ "$#" == "0" -o "$#" -gt "2" ]; then
   echo "usage: give-points USERNAME [NUM_POINTS]"
   exit 1

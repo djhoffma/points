@@ -1,3 +1,3 @@
 #!/bin/bash
-source /admin/consult/bin/points/global-paths.sh
+source %ROOT%/global-paths.sh
 sed 's/^.*(\(.*\))/\1/g' /admin/consult/consultants | tail -n +3 > $MEMBERS_LIST

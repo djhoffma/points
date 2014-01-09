@@ -1,5 +1,5 @@
 #!/bin/bash
-source /admin/consult/bin/points/global-paths.sh
+source %ROOT%/global-paths.sh
 if [ -e "$SCORE_FILE" ]; then
   echo "$SCORE_FILE exists, would you really like to reset the system? (y/N)"
   read choice
