@@ -50,4 +50,6 @@ for file in $FILES_LIST; do
     chgrp $HEAD_GROUP $file
   fi
 done
+chmod 664 $SCORE_FILE
+chmod 664 $MEMBERS_LIST
 

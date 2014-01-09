@@ -1,0 +1,15 @@
+ ____       _       _       
+|  _ \ ___ (_)_ __ | |_ ___ 
+| |_) / _ \| | '_ \| __/ __|
+|  __/ (_) | | | | | |_\__ \
+|_|   \___/|_|_| |_|\__|___/
+                            
+Points is a system for keeping track of points as a pseudo currency. It comes with a system for drawing names from a hat weighted by how many points users
+have. It is designed as an incentive system in the workplace, but can be used in many other places. The entire system runs on the command line.
+
+System Requirements:
+Linux operating system
+bash shell
+awk, grep, and a few other common bash utilities
+
+
